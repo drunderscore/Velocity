@@ -20,6 +20,7 @@ package com.velocitypowered.proxy.protocol.packet.brigadier;
 import static com.velocitypowered.api.network.ProtocolVersion.MINECRAFT_1_19;
 import static com.velocitypowered.proxy.protocol.packet.brigadier.ArgumentIdentifier.id;
 import static com.velocitypowered.proxy.protocol.packet.brigadier.ArgumentIdentifier.mapSet;
+import static com.velocitypowered.proxy.protocol.packet.brigadier.ComponentArgumentPropertySerializer.COMPONENT;
 import static com.velocitypowered.proxy.protocol.packet.brigadier.DoubleArgumentPropertySerializer.DOUBLE;
 import static com.velocitypowered.proxy.protocol.packet.brigadier.EmptyArgumentPropertySerializer.EMPTY;
 import static com.velocitypowered.proxy.protocol.packet.brigadier.FloatArgumentPropertySerializer.FLOAT;
@@ -36,6 +37,7 @@ import com.mojang.brigadier.arguments.FloatArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.arguments.LongArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
+import com.velocitypowered.api.command.ComponentArgumentType;
 import com.velocitypowered.api.network.ProtocolVersion;
 import com.velocitypowered.proxy.protocol.ProtocolUtils;
 import io.netty.buffer.ByteBuf;
@@ -197,7 +199,7 @@ public class ArgumentPropertyRegistry {
     empty(id("minecraft:item_stack", mapSet(MINECRAFT_1_19, 14)));
     empty(id("minecraft:item_predicate", mapSet(MINECRAFT_1_19, 15)));
     empty(id("minecraft:color", mapSet(MINECRAFT_1_19, 16)));
-    empty(id("minecraft:component", mapSet(MINECRAFT_1_19, 17)));
+    register(id("minecraft:component", mapSet(MINECRAFT_1_19, 17)), ComponentArgumentType.class, COMPONENT);
     empty(id("minecraft:message", mapSet(MINECRAFT_1_19, 18)));
     empty(id("minecraft:nbt_compound_tag", mapSet(MINECRAFT_1_19, 19))); // added in 1.14
     empty(id("minecraft:nbt_tag", mapSet(MINECRAFT_1_19, 20))); // added in 1.14
